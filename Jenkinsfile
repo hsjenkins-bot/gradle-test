@@ -37,8 +37,7 @@ pipeline {
                         shouldFailTheBuild: true,
                         shouldWaitForRundeckJob: true,
                         tags: "",
-                        tailLog: true,
-                        token: "cX3H03SMT2B5Fr9RIcmrRairXGs8ISkZ"
+                        tailLog: true
                     ])
                 }
             }
