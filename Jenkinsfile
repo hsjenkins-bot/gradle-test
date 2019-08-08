@@ -1,9 +1,15 @@
 pipeline {
     agent any
+    environment {
+    BUILD_NUMBER_NEW = """${sh(
+        returnStdOut: true,
+        script: 'echo ((${env.BUILD_NUMBER} + 285))'
+        )}"""
+    }
     stages {
         stage('Build') { 
             steps {
-                echo "${env.BUILD_NUMBER}+285"
+                echo "${env.BUILD_NUMBER_NEW}"
                 sh "${env.WORKSPACE}/gradlew build"
             }
         }
