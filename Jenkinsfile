@@ -3,10 +3,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh '''
-                    sum=$(( ${env.BUILD_NUMBER} + 285))
-                    echo "Sum is $sum"
-                    '''
+                sh "echo ${env.WORKSPACE + 285}"
                 sh "${env.WORKSPACE}/gradlew build"
             }
         }
