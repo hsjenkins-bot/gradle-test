@@ -12,13 +12,36 @@ pipeline {
             }
         }
         stage('Upload JAR to S3') {
+            when {branch: "master"}
             steps {
                 dir("${env.WORKSPACE}") {
                     pwd();
 
                     withAWS(region: 'us-east-1', credentials: 'hs-aws') {
-                        s3Upload(bucket: "homespotter-listing-images-dev", path: "test/${env.BUILD_NUMBER}/", file: "${env.WORKSPACE}/build/libs/jenkinsfile-test.jar");
+                        s3Upload(bucket: "homespotter-releases", path: "test/${env.BUILD_NUMBER}/", file: "${env.WORKSPACE}/build/libs/jenkinsfile-test.jar");
                     }
+                }
+            }
+        }
+        stage('Push changes to jobs server') {
+            when {branch: "master"}
+            steps {
+                script {
+                    step([
+                        $class: "RundeckNotifier",
+                        includeRundeckLogs: true,
+                        jobId: "501a22ee-9d82-47a2-88e2-ec45f63474d0"
+                        nodeFilters: "",
+                        options: """
+                                build_number=285
+                                """,
+                        rundeckInstance: "Default",
+                        shouldFailTheBuild: true,
+                        shouldWaitForRundeckJob: true,
+                        tags: "",
+                        tailLog: true,
+                        token: "cX3H03SMT2B5Fr9RIcmrRairXGs8ISkZ"
+                    ])
                 }
             }
         }
