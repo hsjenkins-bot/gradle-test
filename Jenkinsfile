@@ -1,18 +1,14 @@
 pipeline {
-    agent {
-        docker {
-            image 'openjdk:8' 
-        }
-    }
+    agent any
     stages {
         stage('Build') { 
             steps {
-                sh './gradlew build'
+                sh '${env.WORKSPACE}/gradlew build'
             }
         }
         stage('Test') {
             steps {
-                sh './gradlew test'
+                sh '${env.WORKSPACE}/gradlew test'
             }
         }
     }
