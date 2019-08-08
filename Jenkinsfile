@@ -33,7 +33,7 @@ pipeline {
                         options: """
                                 build_number=285
                                 """,
-                        rundeckInstance: "Default",
+                        rundeckInstance: "Homespotter Rundeck",
                         shouldFailTheBuild: true,
                         shouldWaitForRundeckJob: true,
                         tags: "",
