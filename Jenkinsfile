@@ -1,8 +1,10 @@
 pipeline {
+    def buildNumber = 285 + env.BUILD_NUMBER
     agent any
     stages {
         stage('Build') { 
             steps {
+                sh "echo $buildNumber"
                 sh "${env.WORKSPACE}/gradlew build"
             }
         }
@@ -33,7 +35,7 @@ pipeline {
                         options: """
                                 build_number=285
                                 """,
-                        rundeckInstance: "Homespotter Rundeck",
+                        rundeckInstance: "HS Rundeck",
                         shouldFailTheBuild: true,
                         shouldWaitForRundeckJob: true,
                         tags: "",
