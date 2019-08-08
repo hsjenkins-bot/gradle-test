@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                echo "${env.BUILD_NUMBER_NEW}"
+                sh "printenv"
                 sh "${env.WORKSPACE}/gradlew build"
             }
         }
