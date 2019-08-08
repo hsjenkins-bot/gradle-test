@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                def buildNumber = 285 + env.BUILD_NUMBER
+                step {
+                    def buildNumber = 285 + env.BUILD_NUMBER
+                }
                 sh "echo $buildNumber"
                 sh "${env.WORKSPACE}/gradlew build"
             }
