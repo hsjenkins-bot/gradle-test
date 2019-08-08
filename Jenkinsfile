@@ -3,7 +3,7 @@ pipeline {
     environment {
     BUILD_NUMBER_NEW = """${sh(
         returnStdout: true,
-        script: 'echo 285'
+        script: 'echo ${env.BUILD_NUMBER}'
         )}"""
     }
     stages {
