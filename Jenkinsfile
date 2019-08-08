@@ -12,7 +12,6 @@ pipeline {
             }
         }
         stage('Upload JAR to S3') {
-            when {branch: "master"}
             steps {
                 dir("${env.WORKSPACE}") {
                     pwd();
@@ -24,7 +23,6 @@ pipeline {
             }
         }
         stage('Push changes to jobs server') {
-            when {branch: "master"}
             steps {
                 script {
                     step([
