@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh '${env.WORKSPACE}/gradlew build'
+                sh "${env.WORKSPACE}/gradlew build"
             }
         }
         stage('Test') {
             steps {
-                sh '${env.WORKSPACE}/gradlew test'
+                sh "${env.WORKSPACE}/gradlew test"
             }
         }
     }
