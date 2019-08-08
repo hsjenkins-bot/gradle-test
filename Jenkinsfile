@@ -24,7 +24,7 @@ pipeline {
                     pwd();
 
                     withAWS(region: 'us-east-1', credentials: 'hs-aws') {
-                        s3Upload(bucket: "homespotter-releases", path: "test/${env.BUILD_NUMBER}/", file: "${env.WORKSPACE}/build/libs/jenkinsfile-test.jar");
+                        s3Upload(bucket: "homespotter-releases", path: "test/${env.BUILD_NUMBER_NEW}/", file: "${env.WORKSPACE}/build/libs/jenkinsfile-test.jar");
                     }
                 }
             }
